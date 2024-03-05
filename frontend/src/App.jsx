@@ -5,6 +5,8 @@ import Policiy from './components/Layout/Policy/Policy'
 import Sliders from './components/Slider/Sliders'
 import Categories from './components/Categories/Categories'
 import Products from './components/Products/Products'
+
+import Campains from './components/Campains/Campains'
 import './App.css'
 
 const App = () => {
@@ -14,6 +16,7 @@ const App = () => {
     <Sliders/>
     <Categories/>
     <Products/>
+    <Campains/>
     <Policiy/>
     <Footer/>
    </main>
