@@ -9,6 +9,7 @@ import Products from './components/Products/Products'
 import Campains from './components/Campains/Campains'
 import Blogs from './components/Blog/Blogs'
 import './App.css'
+import Brands from './components/Brand/Brands'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
     <Campains/>
     <Products title='New Arrivals'/>
     <Blogs/>
+    <Brands/>
     <Policiy/>
     <Footer/>
    </main>
