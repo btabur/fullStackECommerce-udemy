@@ -4,6 +4,8 @@ import Footer from './components/Layout/Footer/Footer'
 import Policiy from './components/Layout/Policy/Policy'
 import Sliders from './components/Slider/Sliders'
 import Categories from './components/Categories/Categories'
+import Products from './components/Products/Products'
+import './App.css'
 
 const App = () => {
   return (
@@ -11,6 +13,7 @@ const App = () => {
     <Header/>
     <Sliders/>
     <Categories/>
+    <Products/>
     <Policiy/>
     <Footer/>
    </main>
