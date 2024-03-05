@@ -7,6 +7,7 @@ import Categories from './components/Categories/Categories'
 import Products from './components/Products/Products'
 
 import Campains from './components/Campains/Campains'
+import Blogs from './components/Blog/Blogs'
 import './App.css'
 
 const App = () => {
@@ -15,8 +16,10 @@ const App = () => {
     <Header/>
     <Sliders/>
     <Categories/>
-    <Products/>
+    <Products title='Featured Products' />
     <Campains/>
+    <Products title='New Arrivals'/>
+    <Blogs/>
     <Policiy/>
     <Footer/>
    </main>

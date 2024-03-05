@@ -1,12 +1,12 @@
 import ProductItem from "./ProductItem";
 import "./Products.css";
 
-const Products = () => {
+const Products = ({title}) => {
   return (
     <section className="products">
       <div className="container">
         <div className="section-title">
-          <h2>Featured Products</h2>
+          <h2>{title}</h2>
           <p>Summer Collection New Morden Design</p>
         </div>
         <div className="product-wrapper product-carousel">
