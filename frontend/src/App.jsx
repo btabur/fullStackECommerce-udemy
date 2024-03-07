@@ -6,12 +6,14 @@ import ContactPage from './pages/ContactPage'
 
 import AuthPage from './pages/AuthPage'
 import CardPage from './pages/CardPage'
+import BlogPage from './pages/BlogPage'
 import './App.css'
+import BlogDetailPage from './pages/BlogDetailPage'
 
 const App = () => {
   return (
    <React.Fragment>
-    <CardPage/>
+    <BlogDetailPage/>
   
    
    </React.Fragment>
