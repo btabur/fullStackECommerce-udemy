@@ -5,12 +5,13 @@ import ShopPage from './pages/ShopPage'
 import ContactPage from './pages/ContactPage'
 
 import AuthPage from './pages/AuthPage'
+import CardPage from './pages/CardPage'
 import './App.css'
 
 const App = () => {
   return (
    <React.Fragment>
-    <AuthPage/>
+    <CardPage/>
   
    
    </React.Fragment>
