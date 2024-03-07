@@ -7,13 +7,14 @@ import ContactPage from './pages/ContactPage'
 import AuthPage from './pages/AuthPage'
 import CardPage from './pages/CardPage'
 import BlogPage from './pages/BlogPage'
-import './App.css'
 import BlogDetailPage from './pages/BlogDetailPage'
+import ProductDetailsPage from './pages/ProductDetailsPage'
+import './App.css'
 
 const App = () => {
   return (
    <React.Fragment>
-    <BlogDetailPage/>
+    <ProductDetailsPage/>
   
    
    </React.Fragment>
