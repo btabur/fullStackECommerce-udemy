@@ -10,6 +10,7 @@ import Campains from './components/Campains/Campains'
 import Blogs from './components/Blog/Blogs'
 import './App.css'
 import Brands from './components/Brand/Brands'
+import CampainSingle from './components/Campain-Single/CampainSingle'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
     <Products title='New Arrivals'/>
     <Blogs/>
     <Brands/>
+    <CampainSingle/>
     <Policiy/>
     <Footer/>
    </main>
