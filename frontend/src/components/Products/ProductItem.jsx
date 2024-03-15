@@ -2,7 +2,7 @@ import "./Products.css";
 
 const ProductItem = () => {
   return (
-    <li
+    <div
       className="product-item glide__slide"
      
       style={{width:'285px', marginLeft:'10px', marginRight:'10px'}}
@@ -54,7 +54,7 @@ const ProductItem = () => {
           </a>
         </div>
       </div>
-    </li>
+    </div>
   );
 };
 
