@@ -14,7 +14,7 @@ import './App.css'
 const App = () => {
   return (
    <React.Fragment>
-    <HomePage/>
+    <ProductDetailsPage/>
   
    
    </React.Fragment>

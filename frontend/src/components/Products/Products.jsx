@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProductItem from "./ProductItem";
-import ProducstDAta from '../../data.json'
+import producstDAta from '../../data.json'
 import Slider from "react-slick"
 import "./Products.css";
 
@@ -29,7 +29,7 @@ function PrevBtn({onClick}){
 }
 
 const Products = ({title}) => {
-  const [products, setProducts] = useState(ProducstDAta)
+  const [products, setProducts] = useState(producstDAta)
 
 
   const sliderSettings = {
