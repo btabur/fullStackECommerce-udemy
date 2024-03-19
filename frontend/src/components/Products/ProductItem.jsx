@@ -1,6 +1,16 @@
+import { useState } from "react";
 import "./Products.css";
 
-const ProductItem = () => {
+const ProductItem = ({productItem, setcardItems}) => {
+
+
+  function addToCard (cardItem) {
+  //  setcardItems([...cardItems,product]);  1. yol
+
+    setcardItems((prews)=> [...prews,cardItem])
+   
+
+  }
   return (
     <div
       className="product-item glide__slide"
@@ -9,13 +19,13 @@ const ProductItem = () => {
     >
       <div className="product-image">
         <a href="#">
-          <img src="img/products/product2/1.png" alt="" className="img1" />
-          <img src="img/products/product2/2.png" alt="" className="img2" />
+          <img src={productItem.img.singleImage} alt="" className="img1" />
+          <img src={productItem.img.thumbs[1]}alt="" className="img2" />
         </a>
       </div>
       <div className="product-info">
         <a href="$" className="product-title">
-          Ridley High Waist
+        {productItem.name}
         </a>
         <ul className="product-star">
           <li>
@@ -35,12 +45,13 @@ const ProductItem = () => {
           </li>
         </ul>
         <div className="product-prices">
-          <strong className="new-price">$100.00</strong>
-          <span className="old-price">$208.00</span>
+          <strong className="new-price">${productItem.price.newPrice.toFixed(2)}</strong>
+          <span className="old-price">${productItem.price.oldPrice.toFixed(2)}</span>
         </div>
-        <span className="product-discount">-33%</span>
+        <span className="product-discount">-{productItem.discount}%</span>
         <div className="product-links">
-          <button className="add-to-cart" data-id="2">
+          <button onClick={()=>addToCard(productItem)}
+           className="add-to-cart" data-id="2">
             <i className="bi bi-basket-fill"></i>
           </button>
           <button>

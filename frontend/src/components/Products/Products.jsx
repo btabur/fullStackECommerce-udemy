@@ -29,7 +29,10 @@ function PrevBtn({onClick}){
 }
 
 const Products = ({title}) => {
-  const [products, setProducts] = useState(producstDAta)
+  const [products, setProducts] = useState(producstDAta);
+
+  const [cardItems, setcardItems] = useState([]);
+
 
 
   const sliderSettings = {
@@ -67,7 +70,7 @@ const Products = ({title}) => {
   
                 <Slider {...sliderSettings}>
                     {products.map((product)=>(
-                        <ProductItem product={product} key={product.id}/>
+                        <ProductItem productItem={product} setcardItems={setcardItems} key={product.id}/>
                       ))}
                 </Slider>
          
