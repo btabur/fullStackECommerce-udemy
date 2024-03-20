@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import './Header.css'
+import { CardContext } from '../../../context/CardProvider'
 
 const Header = ({setIsSearchShow}) => {
+  const {cardItems} = useContext(CardContext)
   return (
     
   <header>
@@ -190,7 +193,7 @@ const Header = ({setIsSearchShow}) => {
               <div className="header-cart">
                 <a href="cart.html" className="header-cart-link">
                   <i className="bi bi-bag"></i>
-                  <span className="header-cart-count">0</span>
+                  <span className="header-cart-count">{cardItems.length}</span>
                 </a>
               </div>
             </div>

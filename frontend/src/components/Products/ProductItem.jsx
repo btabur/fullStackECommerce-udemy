@@ -1,16 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CardContext } from "../../context/CardProvider";
 import "./Products.css";
 
-const ProductItem = ({productItem, setcardItems}) => {
+const ProductItem = ({productItem}) => {
+
+  const {addToCard} = useContext(CardContext)
 
 
-  function addToCard (cardItem) {
-  //  setcardItems([...cardItems,product]);  1. yol
 
-    setcardItems((prews)=> [...prews,cardItem])
-   
-
-  }
   return (
     <div
       className="product-item glide__slide"
