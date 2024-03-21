@@ -4,9 +4,9 @@ import "./Products.css";
 
 const ProductItem = ({productItem}) => {
 
-  const {addToCard} = useContext(CardContext)
+  const {cardItems,addToCard} = useContext(CardContext)
 
-
+  const isHave = cardItems.find((item)=> item.id ===productItem.id)
 
   return (
     <div

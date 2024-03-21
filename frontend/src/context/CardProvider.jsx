@@ -1,26 +1,34 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CardContext = createContext();
 
-const CardProvider =({children})=> {
-    const [cardItems, setcardItems] = useState([]);
+const CardProvider = ({ children }) => {
+  const [cardItems, setcardItems] = useState(
+    localStorage.getItem("cardItems")
+      ? JSON.parse(localStorage.getItem("cardItems"))
+      : []
+  );
 
-    function addToCard (cardItem) {
-        //  setcardItems([...cardItems,product]);  1. yol
-      
-          setcardItems((prews)=> [...prews,cardItem])
-        }
-    return (
-        <CardContext.Provider
-        value={{
-          addToCard,
-          cardItems
-        }}
-        >
-            {children}
+  useEffect(() => {
+    localStorage.setItem("cardItems", JSON.stringify(cardItems));
+    console.log(cardItems)
+  }, [cardItems]);
 
-        </CardContext.Provider>
-    )
-}
+  function addToCard(cardItem) {
+    //  setcardItems([...cardItems,product]);  1. yol
 
-export default CardProvider
+    setcardItems((prews) => [...prews, cardItem]);
+  }
+  return (
+    <CardContext.Provider
+      value={{
+        addToCard,
+        cardItems,
+      }}
+    >
+      {children}
+    </CardContext.Provider>
+  );
+};
+
+export default CardProvider;
