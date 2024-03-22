@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import { CardContext } from "../../context/CardProvider";
+import {Link} from "react-router-dom"
 import "./Products.css";
 
 const ProductItem = ({productItem}) => {
 
   const {cardItems,addToCard} = useContext(CardContext)
 
+
   const isHave = cardItems.find((item)=> item.id ===productItem.id)
+
 
   return (
     <div
@@ -55,9 +58,10 @@ const ProductItem = ({productItem}) => {
           <button>
             <i className="bi bi-heart-fill"></i>
           </button>
-          <a href="#" className="product-link" data-id="2">
+          <Link to={`/product/${productItem.id}`}
+           className="product-link" data-id="2">
             <i className="bi bi-eye-fill"></i>
-          </a>
+          </Link>
           <a href="#">
             <i className="bi bi-share-fill"></i>
           </a>
