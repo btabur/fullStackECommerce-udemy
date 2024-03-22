@@ -1,4 +1,5 @@
-import React from 'react'
+
+import { Route, Routes } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
@@ -13,11 +14,17 @@ import './App.css'
 
 const App = () => {
   return (
-   <React.Fragment>
-    <CardPage/>
-  
+   <Routes>
+      <Route path='/' element={<HomePage/>}/>
+      <Route path='/shop' element={<ShopPage/>} />
+      <Route path='/blog' element={<BlogPage/>} />
+      <Route path='/contact' element={<ContactPage/>} />
+      <Route path='/card' element={<CardPage/>} />
+      <Route path='/auth' element={<AuthPage/>} />
+      <Route path='/product/:id' element={<ProductDetailsPage/>} />
+      <Route path='/blog/:id' element={<BlogDetailPage/>} />
    
-   </React.Fragment>
+   </Routes>
   )
 }
 
