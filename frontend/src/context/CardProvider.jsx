@@ -19,10 +19,15 @@ const CardProvider = ({ children }) => {
 
     setcardItems((prews) => [...prews, cardItem]);
   }
+  function removerFromCard (itemId) {
+    const filterdCardItems = cardItems.filter(item => item.id!==itemId)
+    setcardItems(filterdCardItems)
+  }
   return (
     <CardContext.Provider
       value={{
         addToCard,
+        removerFromCard,
         cardItems,
       }}
     >
