@@ -72,4 +72,22 @@ router.put("/:categoryId", async ( req,res)=> {
     }
 })
 
+// kategori silme işlemi
+router.delete("/:categoryId" , async (req,res)=> {
+    try {
+        
+        const categoryId = req.params.categoryId;
+
+        const deletedCategory = await Category.findByIdAndDelete(categoryId);
+
+        if(!deletedCategory) {
+            return res.status(404).json("category not found")
+        }
+        res.status(200).json(deletedCategory)
+    } catch (error) {
+        res.status(500).json({error:'Server Error'+error})
+        
+    }
+})
+
 module.exports= router;
