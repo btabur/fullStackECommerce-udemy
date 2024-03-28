@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
+const logger = require("morgan")
 
 const mainRoute = require("./routes/index.js")
 
@@ -18,6 +19,11 @@ const connect = async ()=> {
         throw error
     }
 }
+
+//middlewares
+app.use(logger("dev"))
+app.use(express.json());
+
 
 app.use("/api",mainRoute)
 
