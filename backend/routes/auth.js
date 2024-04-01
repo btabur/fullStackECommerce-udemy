@@ -5,11 +5,19 @@ const User = require("../models/User.js");
 
 const router = express.Router();
 
+const generateRandomAvatar = ()=> {
+    const randomAvatar = Math.floor(Math.random()*70+1);
+    return `https://i.pravatar.cc/300?img=${randomAvatar}`
+}
+
+
+
 //kullanıcı oluşturma ( create- register)
 
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    const defaultAvatar = generateRandomAvatar()
 
     const existingUser = await User.findOne({email});
 
@@ -22,6 +30,7 @@ router.post("/register", async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      avatar: defaultAvatar
     });
     await newUser.save();
     res.status(201).json(newUser);
