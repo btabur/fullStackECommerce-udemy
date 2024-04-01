@@ -6,11 +6,13 @@ const router = express.Router()
 
 const productRoute = require("./products.js")
 const categoryRoute = require("./categories.js")
+const authRoute = require("./auth.js")
 
 
 //Her rotayı ilgili yol altında kullanıyoruz.
 
 router.use("/categories",categoryRoute)
 router.use("/products",productRoute)
+router.use("/users",authRoute)
 
 module.exports= router;
