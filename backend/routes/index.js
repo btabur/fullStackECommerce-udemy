@@ -7,6 +7,7 @@ const router = express.Router()
 const productRoute = require("./products.js")
 const categoryRoute = require("./categories.js")
 const authRoute = require("./auth.js")
+const couponRoute = require("./coupons.js")
 
 
 //Her rotayı ilgili yol altında kullanıyoruz.
@@ -14,5 +15,6 @@ const authRoute = require("./auth.js")
 router.use("/categories",categoryRoute)
 router.use("/products",productRoute)
 router.use("/users",authRoute)
+router.use("/coupons",couponRoute)
 
 module.exports= router;

@@ -15,6 +15,7 @@ router.post("/",async (req,res)=> {
         
     } catch (error) {
         console.log(error);
+        res.status(500).json({error:"Server Error"})
         
     }
 })
@@ -39,12 +40,12 @@ router.get("/:productId", async ( req,res)=> {
         const productId = req.params.productId;
       
             const product = await Product.findById(productId)
-            res.status(200).json(product)
+          
 
             if(!product) {
               return  res.status(404).json({error:"Product not found"})
             }
-            
+            res.status(200).json(product)
        
 
     } catch (error) {
