@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const navigate = useNavigate()
+    const apiUrl = import.meta.env.VITE_API_BASE_URL
   const [formData,setFormData]=  useState({
         username:"",
         email:"",
@@ -20,7 +21,7 @@ const Register = () => {
     const handleRegister = async(e)=> {
         e.preventDefault()
         try {
-            const response = await fetch("http://localhost:5000/api/users/register",
+            const response = await fetch(`${apiUrl}/api/users/register`,
             {
                 method:"POST",
                 headers:{

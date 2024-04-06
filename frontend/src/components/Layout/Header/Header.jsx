@@ -6,7 +6,8 @@ import { Link, useLocation } from 'react-router-dom'
 const Header = ({setIsSearchShow}) => {
   const {cardItems} = useContext(CardContext)
 
-  const {pathname} = useLocation()
+  const {pathname} = useLocation();
+  const user = localStorage.getItem("user")
   return (
     
   <header>
@@ -190,15 +191,30 @@ const Header = ({setIsSearchShow}) => {
               >
                 <i className="bi bi-search"></i>
               </button>
-              <a href="#">
+              {/* <a href="#">
                 <i className="bi bi-heart"></i>
-              </a>
+              </a> */}
               <div className="header-cart">
                 <Link to={'/card'} className="header-cart-link">
                   <i className="bi bi-bag"></i>
                   <span className="header-cart-count">{cardItems.length}</span>
                 </Link>
               </div>
+              {
+                user && (
+                      <button className="search-button"
+                        onClick={()=> {
+                          if(window.confirm("Çıkış yapmak istediğinize emin misiniz")) {
+                            localStorage.removeItem("user")
+                            window.location.href = "/"
+                          }
+                        }}
+                        >
+                          <i className="bi bi-box-arrow-right"></i>
+                        </button>
+                )
+              }
+              
             </div>
           </div>
         </div>
