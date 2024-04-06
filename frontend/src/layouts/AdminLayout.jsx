@@ -13,8 +13,16 @@ import { useNavigate } from "react-router-dom";
 
 const {Sider,Header,Content}  =Layout;
 
+const getUserRole = ()=> {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  return user ? user.role : null;
+}
+
 const AdminLayout = ({children}) => {
   const navigate = useNavigate();
+
+  const userRole = getUserRole();
   const menuItems = [
     {
       key: "1",
@@ -122,6 +130,11 @@ const AdminLayout = ({children}) => {
       },
     },
   ];
+
+  if(userRole !== "admin") {
+    window.location.href = "/"
+    
+  }
    
   
   return (
