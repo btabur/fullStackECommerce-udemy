@@ -167,7 +167,7 @@ const AdminLayout = ({children}) => {
             padding:"24px 50px",
             minHeight:360
            }}>
-            dfvdfv
+           
            {children}
            </div>
           </Content>

@@ -22,7 +22,7 @@ const Login = () => {
       const handleLogin = async(e)=> {
         e.preventDefault()
         try {
-            const response = await fetch(`${apiUrl}/api/users/login`,
+            const response = await fetch(`${apiUrl}/api/auth/login`,
             {
                 method:"POST",
                 headers:{

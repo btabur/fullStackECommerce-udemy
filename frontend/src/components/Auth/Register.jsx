@@ -21,7 +21,7 @@ const Register = () => {
     const handleRegister = async(e)=> {
         e.preventDefault()
         try {
-            const response = await fetch(`${apiUrl}/api/users/register`,
+            const response = await fetch(`${apiUrl}/api/auth/register`,
             {
                 method:"POST",
                 headers:{
