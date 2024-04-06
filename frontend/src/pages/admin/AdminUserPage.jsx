@@ -1,4 +1,5 @@
 import { Table } from 'antd';
+import { Button, message, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react'
 
 const AdminUserPage = () => {
@@ -33,6 +34,22 @@ const AdminUserPage = () => {
             <img src={imgSrc} style={{width:'50px', borderRadius:'50%'}} />
           )
         },
+        {
+            title: 'Actions',
+            dataIndex: 'actions',
+            key: 'actions',
+            render:(text,record)=> (
+                <Popconfirm
+                    title="KUllanıcıyı Sil"
+                    description="Kullanıcıyı silmek istediğinizden emin misiniz?"
+                    onConfirm={()=> deleteUser(record.email)}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <Button danger>Delete</Button>
+                </Popconfirm>
+            )
+          }
       ];
 
       const fetchUser = async()=> {
@@ -55,7 +72,25 @@ const AdminUserPage = () => {
         }
         
     }
+    const deleteUser =async (userEmail)=> {
 
+        try {
+          
+            const response = await fetch(`${apiUrl}/api/users/${userEmail}`,
+           { method:"DELETE"})
+          
+           if(response.ok){
+            message.success("Kullanıcı başarı ile silindi")
+           fetchUser()
+           }else {
+            message.error("Kullanıcı silinemedi ")
+           }
+
+        } catch (error) {
+            console.log("Silme hatası",error);
+        }
+
+    }
     useEffect(()=> {
             fetchUser()
     },[])

@@ -18,5 +18,24 @@ router.get("/",async(req,res)=> {
     }
  })
 
+ // user silme işlemi
+router.delete("/:email" , async (req,res)=> {
+    try {
+        
+        const email = req.params.email;
+
+        const deletedUser = await User.findOneAndDelete({email});
+
+        if(!deletedUser) {
+            return res.status(404).json("user not found")
+        }
+        res.status(200).json(deletedUser)
+    } catch (error) {
+        res.status(500).json({error:'Server Error'+error})
+        
+    }
+})
+
+
 
  module.exports=router
