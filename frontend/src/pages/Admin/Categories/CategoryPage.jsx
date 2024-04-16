@@ -1,8 +1,8 @@
-import { Table } from 'antd';
+import { Space, Table } from 'antd';
 import { Button, message, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react'
 
-const AdminUserPage = () => {
+const CategoryPage = () => {
 
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -12,57 +12,55 @@ const AdminUserPage = () => {
    
       const columns = [
         {
-          title: 'Username',
-          dataIndex: 'username',
-          key: 'username',
-        },
-        {
-          title: 'Email',
-          dataIndex: 'email',
-          key: 'email',
-        },
-        {
-            title: 'Role',
-            dataIndex: 'role',
-            key: 'role',
+            title: 'Kategori Görseli',
+            dataIndex: 'img',
+            key: 'img',
+            render:(imgSrc)=> (
+              <img src={imgSrc} style={{width:'100px', borderRadius:'10%'}} />
+            )
           },
         {
-          title: 'Avatar',
-          dataIndex: 'avatar',
-          key: 'avatar',
-          render:(imgSrc)=> (
-            <img src={imgSrc} style={{width:'50px', borderRadius:'50%'}} />
-          )
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          render:(text)=> <b>{text}</b>
         },
         {
             title: 'Actions',
             dataIndex: 'actions',
             key: 'actions',
             render:(text,record)=> (
-                <Popconfirm
-                    title="KUllanıcıyı Sil"
-                    description="Kullanıcıyı silmek istediğinizden emin misiniz?"
-                    onConfirm={()=> deleteUser(record.email)}
+                <Space>
+                    <Button  type='primary' >
+                        Düzenle
+                    </Button>
+                      <Popconfirm
+                    title="Kategoriyi Sil"
+                    description="Kategoriyi silmek istediğinizden emin misiniz?"
+                    onConfirm={()=> deleteCategory(record._id)}
                     okText="Yes"
                     cancelText="No"
                 >
                     <Button danger>Delete</Button>
                 </Popconfirm>
+
+                </Space>
+              
             )
           }
       ];
 
-      const fetchUser = async()=> {
+      const fetchCategories = async()=> {
        
         try {
             setLoading(true)
-            const response = await fetch(`${apiUrl}/api/users`)
+            const response = await fetch(`${apiUrl}/api/categories`)
           
            if(response.ok){
             const data = await response.json();
             setDataSource(data)
            }else {
-            message.error("Kullanıcılar getirilemedi ")
+            message.error("Kategoriler getirilemedi ")
            }
 
         } catch (error) {
@@ -72,18 +70,18 @@ const AdminUserPage = () => {
         }
         
     }
-    const deleteUser =async (userEmail)=> {
+    const deleteCategory =async (categoryId)=> {
 
         try {
           
-            const response = await fetch(`${apiUrl}/api/users/${userEmail}`,
+            const response = await fetch(`${apiUrl}/api/categories/${categoryId}`,
            { method:"DELETE"})
           
            if(response.ok){
-            message.success("Kullanıcı başarı ile silindi")
-           fetchUser()
+            message.success("Kategori başarı ile silindi")
+           fetchCategories()
            }else {
-            message.error("Kullanıcı silinemedi ")
+            message.error("Kategori silinemedi ")
            }
 
         } catch (error) {
@@ -92,7 +90,7 @@ const AdminUserPage = () => {
 
     }
     useEffect(()=> {
-            fetchUser()
+            fetchCategories()
     },[])
   return (
    <Table 
@@ -103,4 +101,4 @@ const AdminUserPage = () => {
   )
 }
 
-export default AdminUserPage
+export default CategoryPage

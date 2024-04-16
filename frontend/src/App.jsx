@@ -11,7 +11,8 @@ import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import './App.css'
-import AdminUserPage from './pages/admin/AdminUserPage'
+import UserPage from './pages/Admin/UserPage'
+import CategoryPage from './pages/Admin/Categories/CategoryPage'
 
 const App = () => {
   return (
@@ -25,7 +26,8 @@ const App = () => {
       <Route path='/product/:id' element={<ProductDetailsPage/>} />
       <Route path='/blog/:id' element={<BlogDetailPage/>} />
       <Route path='/admin/*' >
-       <Route path='users' element={<AdminUserPage/>} />
+       <Route path='users' element={<UserPage/>} />
+       <Route path='categories' element={<CategoryPage/>} />
       </Route>
      
    
