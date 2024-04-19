@@ -1,6 +1,7 @@
 import { Space, Table } from 'antd';
 import { Button, message, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
 
@@ -8,6 +9,7 @@ const CategoryPage = () => {
 
     const [dataSource,setDataSource] = useState([]);
     const [loading,setLoading] = useState(false);
+    const navigate = useNavigate()
 
    
       const columns = [
@@ -31,7 +33,7 @@ const CategoryPage = () => {
             key: 'actions',
             render:(text,record)=> (
                 <Space>
-                    <Button  type='primary' >
+                    <Button  type='primary' onClick={()=>navigate(`/admin/categories/update/${record._id}`)} >
                         Düzenle
                     </Button>
                       <Popconfirm

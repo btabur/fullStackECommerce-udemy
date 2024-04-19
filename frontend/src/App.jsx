@@ -13,6 +13,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage'
 import './App.css'
 import UserPage from './pages/Admin/UserPage'
 import CategoryPage from './pages/Admin/Categories/CategoryPage'
+import UpdateCategoryPage from './pages/Admin/Categories/UpdateCategoryPage'
 
 const App = () => {
   return (
@@ -26,8 +27,9 @@ const App = () => {
       <Route path='/product/:id' element={<ProductDetailsPage/>} />
       <Route path='/blog/:id' element={<BlogDetailPage/>} />
       <Route path='/admin/*' >
-       <Route path='users' element={<UserPage/>} />
-       <Route path='categories' element={<CategoryPage/>} />
+        <Route path='users' element={<UserPage/>} />
+        <Route path='categories' element={<CategoryPage/>} />
+        <Route path='categories/update/:id' element={<UpdateCategoryPage/>} />
       </Route>
      
    
