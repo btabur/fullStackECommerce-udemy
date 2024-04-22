@@ -1,6 +1,8 @@
 import { Button, Checkbox, Form, Input, InputNumber, Select, Spin, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const CreateProductPage = () => {
   const [loading, setLoading] = useState(false);
@@ -42,8 +44,7 @@ const CreateProductPage = () => {
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-     
+      style={{ maxWidth: 900 }}
     >
       <Form.Item
         label="Ürün ismi"
@@ -64,9 +65,19 @@ const CreateProductPage = () => {
        <Form.Item
         label="İndirim oranı"
         name="discount"
-        rules={[{  message: "İndirim oranı girin" }]}
+        rules={[{  message: "İndirim açıklaması girin" }]}
       >
         <InputNumber/>
+      </Form.Item>
+       {/* description */}
+       <Form.Item
+        label="Ürün açıklaması"
+        name="description"
+        rules={[{  message: "Ürün açıklaması girin" }]}
+      >
+       <ReactQuill theme="snow" style={{
+        background:"white"
+       }}/>
       </Form.Item>
       {/* GÖRSEL LİNKLERİ */}
       <Form.Item
