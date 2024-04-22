@@ -6,24 +6,38 @@ import 'react-quill/dist/quill.snow.css';
 
 const CreateProductPage = () => {
   const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [form]=Form.useForm()
 
   const onFinish = async (values) => {
+
+    const imgLinks = values.img.split("\n").map((link)=> link.trim());
+    const colors = values.colors.split("\n").map((color)=> color.trim());
+    const sizes = values.sizes.split("\n").map((size)=> size.trim());
+   
     setLoading(true)
     try {
-      const response = await fetch(`${apiUrl}/api/categories`, {
+      const response = await fetch(`${apiUrl}/api/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          price:{
+            current:values.current,
+            discount: values.discount
+          },colors,
+          size:sizes,
+          img:imgLinks
+        }),
       });
       if(response.ok){
-        message.success("Kategori oluşturuldu");
+        message.success("Ürün eklendi");
         form.resetFields()
       }else {
-        message.info("Kategori oluşurken bir hata oluştu")
+        message.info("Ürün eklerken bir hata oluştu")
       }
     } catch (error) {
       message.error("Bir hata oldu.")
@@ -33,7 +47,30 @@ const CreateProductPage = () => {
    
   };
 
-  
+  const fetchCategories = async()=> {
+       
+    try {
+        setLoading(true)
+        const response = await fetch(`${apiUrl}/api/categories`)
+      
+       if(response.ok){
+        const data = await response.json();
+        setCategories(data)
+       }else {
+        message.error("Kategoriler getirilemedi ")
+       }
+
+    } catch (error) {
+        console.log("Giriş hatası",error);
+    }finally{
+        setLoading(false)
+    }
+    
+}
+
+  useEffect(()=>{
+    fetchCategories()
+  },[apiUrl])
 
 
   return (
@@ -53,6 +90,21 @@ const CreateProductPage = () => {
       >
         <Input />
       </Form.Item>
+       {/* ürün kategorisi */}
+       <Form.Item
+        label="Ürün Kategorisi"
+        name="category"
+        rules={[{ required: true, message: "Lütfen en az 1 kategori  seçin" }]}
+      >
+       <Select>
+        { categories.map((category)=> (
+              <Select.Option values={category._id} key={category._id}>
+              {category.name}
+            </Select.Option>
+        ))}
+        
+       </Select>
+      </Form.Item>
         {/* ürün fiyatı */}
       <Form.Item
         label="Fiyat"
@@ -65,7 +117,6 @@ const CreateProductPage = () => {
        <Form.Item
         label="İndirim oranı"
         name="discount"
-        rules={[{  message: "İndirim açıklaması girin" }]}
       >
         <InputNumber/>
       </Form.Item>
@@ -109,24 +160,10 @@ const CreateProductPage = () => {
         autoSize={{minRows:4}}
         placeholder="Her bir ürün bedenini yeni bir satıra yazın"/>
       </Form.Item>
-       {/* ürün kategorisi */}
-       <Form.Item
-        label="Ürün Kategorisi"
-        name="category"
-        rules={[{ required: true, message: "Lütfen en az 1 kategori  seçin" }]}
-      >
-       <Select>
-          <Select.Option values="SmartPhone" key={"SmartPhone"}>
-            SmartPhone
-          </Select.Option>
-       </Select>
-      </Form.Item>
       
-     
-
-      {/* <Button type="primary" htmlType="submit">
+       <Button type="primary" htmlType="submit">
         Oluştur
-      </Button> */}
+      </Button> 
     </Form>
 
     </Spin>
