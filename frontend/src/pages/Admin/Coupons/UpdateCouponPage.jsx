@@ -2,18 +2,18 @@ import { Button, Checkbox, Form, Input, Spin, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const UpdateCategoryPage = () => {
+const UpdateCouponPage = () => {
   const [loading, setLoading] = useState(false);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const params = useParams();
 
-  const categoryId = params.id;
+  const couponId = params.id;
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
     setLoading(true)
     try {
-      const response = await fetch(`${apiUrl}/api/categories/${categoryId}`, {
+      const response = await fetch(`${apiUrl}/api/coupons/${couponId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -21,9 +21,9 @@ const UpdateCategoryPage = () => {
         body: JSON.stringify(values),
       });
       if(response.ok){
-        message.success("Kategori güncellendi")
+        message.success("Kupon güncellendi")
       }else {
-        message.info("Kategori güncellenirken bir hata oluştu")
+        message.info("Kupon güncellenirken bir hata oluştu")
       }
     } catch (error) {
       console.log(error);
@@ -35,10 +35,10 @@ const UpdateCategoryPage = () => {
 
   
 
-  const fetchCategory = async () => {
+  const fetchCoupon = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${apiUrl}/api/categories/${categoryId}`);
+      const response = await fetch(`${apiUrl}/api/coupons/${couponId}`);
 
       if (!response.ok) {
         throw new Error("Verileri getirme hatası");
@@ -47,8 +47,8 @@ const UpdateCategoryPage = () => {
       const data = await response.json();
       if (data) {
         form.setFieldsValue({
-          name: data.name,
-          img: data.img,
+          code: data.code,
+          discountPercent: data.discountPercent,
         });
       }
     } catch (error) {
@@ -58,7 +58,7 @@ const UpdateCategoryPage = () => {
     }
   };
   useEffect(()=> {
-    fetchCategory()
+    fetchCoupon()
   },[])
   return (
     <Spin spinning={loading}>
@@ -73,17 +73,17 @@ const UpdateCategoryPage = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Kategori ismi"
-        name="name"
-        rules={[{ required: true, message: "Please input category!" }]}
+        label="Kupon ismi"
+        name="code"
+        rules={[{ required: true, message: "Please input code!" }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Kategori Görseli"
-        name="img"
-        rules={[{ required: true, message: "Please input image" }]}
+        label="İndirim Oranı"
+        name="discountPercent"
+        rules={[{ required: true, message: "Bir indirim oranı girin" }]}
       >
         <Input />
       </Form.Item>
@@ -98,4 +98,4 @@ const UpdateCategoryPage = () => {
   );
 };
 
-export default UpdateCategoryPage;
+export default UpdateCouponPage;

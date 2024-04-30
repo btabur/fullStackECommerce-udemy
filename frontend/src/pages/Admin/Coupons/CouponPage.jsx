@@ -33,7 +33,7 @@ const CouponPage = () => {
             key: 'actions',
             render:(text,record)=> (
                 <Space>
-                    <Button  type='primary' onClick={()=>navigate(`/admin/categories/update/${record._id}`)} >
+                    <Button  type='primary' onClick={()=>navigate(`/admin/coupons/update/${record._id}`)} >
                         Düzenle
                     </Button>
                       <Popconfirm
