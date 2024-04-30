@@ -2,7 +2,7 @@ import { Button, Checkbox, Form, Input, Spin, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const CreateCategoryPage = () => {
+const CreateCouponPage = () => {
   const [loading, setLoading] = useState(false);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [form]=Form.useForm()
@@ -10,7 +10,7 @@ const CreateCategoryPage = () => {
   const onFinish = async (values) => {
     setLoading(true)
     try {
-      const response = await fetch(`${apiUrl}/api/categories`, {
+      const response = await fetch(`${apiUrl}/api/coupons`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,10 +18,10 @@ const CreateCategoryPage = () => {
         body: JSON.stringify(values),
       });
       if(response.ok){
-        message.success("Kategori oluşturuldu");
+        message.success("Kupon oluşturuldu");
         form.resetFields()
       }else {
-        message.info("Kategori oluşurken bir hata oluştu")
+        message.info("Kupon oluşurken bir hata oluştu")
       }
     } catch (error) {
       message.error("Bir hata oldu.")
@@ -46,17 +46,17 @@ const CreateCategoryPage = () => {
      
     >
       <Form.Item
-        label="Kategori ismi"
-        name="name"
-        rules={[{ required: true, message: "Please input category!" }]}
+        label="Kupon ismi"
+        name="code"
+        rules={[{ required: true, message: "Bir kupon kodu girin" }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Kategori Görseli"
-        name="img"
-        rules={[{ required: true, message: "Please input image" }]}
+        label="İndirim Oranı"
+        name="discountPercent"
+        rules={[{ required: true, message: "Bir indirim oranı girin" }]}
       >
         <Input />
       </Form.Item>
@@ -71,4 +71,4 @@ const CreateCategoryPage = () => {
   );
 };
 
-export default CreateCategoryPage;
+export default CreateCouponPage;
