@@ -28,8 +28,8 @@ function PrevBtn({ onClick }) {
   );
 }
 
-const Gallery = () => {
-  const [activeImg, setActiveImg] = useState(productData[0].img.thumbs[0]);
+const Gallery = ({product}) => {
+  const [activeImg, setActiveImg] = useState(product.img[0]);
 
   const sliderSettings = {
     dots: false,
@@ -43,7 +43,7 @@ const Gallery = () => {
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
-        <img src={`/${activeImg}`} id="single-image" alt="" />
+        <img src={activeImg} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">
@@ -53,7 +53,7 @@ const Gallery = () => {
             // style="transition: transform 0ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s; width: 357px; transform: translate3d(0px, 0px, 0px);"
           >
             <Slider {...sliderSettings}>
-              {productData[0].img.thumbs.map((item, index) => (
+              {product.img.map((item, index) => (
                 <li
                   key={index}
                   onClick={() => setActiveImg(item)}
@@ -61,7 +61,7 @@ const Gallery = () => {
                   style={{ width: "109px", marginRight: "5px" }}
                 >
                   <img
-                    src={`/${item}`}
+                    src={item}
                     alt=""
                     className={`img-fluid ${item === activeImg && "active"}`}
                   />

@@ -1,10 +1,13 @@
+import { useEffect, useState } from 'react'
 import Breadcrumb from './Breadcrumb/Breadcrumb'
 import Gallery from './Gallery/Gallery'
 import Info from './Info/Info'
 import './ProductDetails.css'
 import Taps from './Taps/Taps'
 
-const ProductDetails = () => {
+
+const ProductDetails = ({product}) => {
+ 
   return (
     <section className="single-product">
     <div className="container">
@@ -14,7 +17,7 @@ const ProductDetails = () => {
          
             <div className="single-content">
                 <main className="site-main">
-                  <Gallery/>
+                  <Gallery product={product}/>
                     <Info/>
                 </main>
             </div>
