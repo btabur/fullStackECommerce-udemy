@@ -7,7 +7,7 @@ const CardTotals = () => {
   const {cardItems} = useContext(CardContext)
 
   const cardItemsTotal = cardItems.map((item) => {
-    const itemTotal = item.price.newPrice * item.quantity;
+    const itemTotal = item.price * item.quantity;
     return itemTotal
   })
 

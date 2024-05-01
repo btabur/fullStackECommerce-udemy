@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import producstDAta from '../../data.json'
 import Slider from "react-slick"
@@ -29,7 +29,32 @@ function PrevBtn({onClick}){
 }
 
 const Products = ({title}) => {
-  const [products, setProducts] = useState(producstDAta);
+  const [products, setProducts] = useState([]);
+
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+
+  const fetchProducts = async()=> {
+       
+    try {
+  
+        const response = await fetch(`${apiUrl}/api/products`)
+      
+       if(response.ok){
+        const data = await response.json();
+        setProducts(data)
+       }else {
+        message.error("Ürünler getirilemedi ")
+       }
+
+    } catch (error) {
+        console.log("Giriş hatası",error);
+    }
+    
+}
+
+useEffect(()=> {
+  fetchProducts()
+},[apiUrl])
 
 
   const sliderSettings = {
@@ -67,7 +92,7 @@ const Products = ({title}) => {
   
                 <Slider {...sliderSettings}>
                     {products.map((product)=>(
-                        <ProductItem productItem={product}  key={product.id}/>
+                        <ProductItem productItem={product}  key={product._id}/>
                       ))}
                 </Slider>
          

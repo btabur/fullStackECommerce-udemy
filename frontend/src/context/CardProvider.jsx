@@ -24,7 +24,7 @@ const CardProvider = ({ children }) => {
   ]);
   }
   function removerFromCard (itemId) {
-    const filterdCardItems = cardItems.filter(item => item.id!==itemId)
+    const filterdCardItems = cardItems.filter(item => item._id!==itemId)
     setcardItems(filterdCardItems)
   }
   return (
