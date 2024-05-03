@@ -13,12 +13,12 @@ const ProductDetails = ({product}) => {
     <div className="container">
         <div className="single-product-wrapper">
           
-            <Breadcrumb/>
+            <Breadcrumb product={product}/>
          
             <div className="single-content">
                 <main className="site-main">
                   <Gallery product={product}/>
-                    <Info/>
+                    <Info product={product}/>
                 </main>
             </div>
          
