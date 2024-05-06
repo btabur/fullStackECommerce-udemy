@@ -2,17 +2,26 @@ import ReviewForm from './ReviewForm'
 import ReviewItem from './ReviewItem'
 import './Reviews.css'
 
-const Reviews = ({active}) => {
+const Reviews = ({active,product}) => {
   return (
     <div className={`tab-panel-reviews ${active}`}>
-    <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
+  
     <div className="comments">
-      <ol className="comment-list">
-       <ReviewItem/>
-       <ReviewItem/>
-       <ReviewItem/>
+      {product.reviews.length>0 ? 
+      <>
+        <h3> { product.reviews.length} reviews for {product.name}</h3>
+       <ol className="comment-list">
+       {product.reviewa.map((item,i)=> (
+               <ReviewItem key={i} item={item}/>
+       ))}
+     
+     </ol>
+      </>
       
-      </ol>
+     :
+     <h3>Hiç yorum yapılmadı</h3>
+      }
+     
     </div>
 
     <div className="review-form-wrapper">

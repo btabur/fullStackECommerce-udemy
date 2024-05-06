@@ -22,7 +22,7 @@ const ProductDetails = ({product}) => {
                 </main>
             </div>
          
-            <Taps/>
+            <Taps product={product}/>
           
 
         </div>

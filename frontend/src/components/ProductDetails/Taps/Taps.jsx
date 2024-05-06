@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Reviews from '../../Reviews/Reviews'
 import './Taps.css'
 
-const Taps = () => {
+const Taps = ({product}) => {
     const [activeTab,setActiveTab] = useState('desc');
 
     const handleTabClick = (e,tab)=> {
@@ -31,19 +31,11 @@ const Taps = () => {
                 </ul>
                 <div className="tab-panel">
                     <div className={`tab-panel-descriptions content ${activeTab === 'desc' && 'active'}`} id="desc">
-                        <p>Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin vitae magna in dui
-                            finibus malesuada et at nulla. Morbi elit ex, viverra vitae ante vel, blandit feugiat
-                            ligula. Fusce fermentum iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-                            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc tristique lacinia.
-                            Nullam aliquam mauris eu accumsan tincidunt. Suspendisse velit ex, aliquet vel ornare
-                            vel, dignissim a tortor.</p>
-                        <br/>
-                        <p>Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin vitae magna in dui
-                            finibus malesuada et at nulla. Morbi elit ex, viverra vitae ante vel, blandit feugiat
-                            ligula. Fusce fermentum iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-                            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc tristique lacinia.
-                            Nullam aliquam mauris eu accumsan tincidunt. Suspendisse velit ex, aliquet vel ornare
-                            vel, dignissim a tortor.</p>
+                    <p className="product-description"
+                        // html etiketi içerisinde gelen verileri aynen gösterebilmek için
+                        dangerouslySetInnerHTML={{__html:product.description}}> 
+                        
+                        </p>
                     </div>
                     <div className={`tab-panel-information content ${activeTab==='info' && 'active'} `} id="info">
                         <h3>Additional information</h3>
@@ -60,13 +52,18 @@ const Taps = () => {
                                     <th>Size</th>
                                     <td>
                                         <p>
-                                            XXS, XS, S, M, L, XL, XXL</p>
+                                           {product.size.map((item,index)=>(
+                                            <span key={index}>{item.toUpperCase()}
+                                            {index<product.size.length-1 && ", "}
+                                            </span>
+                                           ))}
+                                           </p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                   <Reviews active= {activeTab === 'reviews' ? 'content active' : 'content'}/>
+                   <Reviews product={product} active= {activeTab === 'reviews' ? 'content active' : 'content'}/>
                 </div>
             </div>
   )
