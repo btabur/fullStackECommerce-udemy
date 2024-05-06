@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Reviews from '../../Reviews/Reviews'
 import './Taps.css'
 
-const Taps = ({product}) => {
+const Taps = ({product,setProduct}) => {
     const [activeTab,setActiveTab] = useState('desc');
 
     const handleTabClick = (e,tab)=> {
@@ -63,7 +63,7 @@ const Taps = ({product}) => {
                             </tbody>
                         </table>
                     </div>
-                   <Reviews product={product} active= {activeTab === 'reviews' ? 'content active' : 'content'}/>
+                   <Reviews product={product} setProduct={setProduct} active= {activeTab === 'reviews' ? 'content active' : 'content'}/>
                 </div>
             </div>
   )

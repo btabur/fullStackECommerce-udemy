@@ -6,7 +6,7 @@ import './ProductDetails.css'
 import Taps from './Taps/Taps'
 
 
-const ProductDetails = ({product}) => {
+const ProductDetails = ({product,setProduct}) => {
  
   return (
     <section className="single-product">
@@ -22,7 +22,7 @@ const ProductDetails = ({product}) => {
                 </main>
             </div>
          
-            <Taps product={product}/>
+            <Taps product={product} setProduct={setProduct}/>
           
 
         </div>

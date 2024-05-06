@@ -30,7 +30,7 @@ const ProductDetailsPage = () => {
     console.log(product);
   },[])
   return ( product ?
-    <ProductDetails product={product}/> : <p>Ürün Yükleniyor</p>
+    <ProductDetails product={product} setProduct={setProduct}/> : <p>Ürün Yükleniyor</p>
   )
 }
 

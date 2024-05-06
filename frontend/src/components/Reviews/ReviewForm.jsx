@@ -2,7 +2,7 @@ import { message } from "antd";
 import { useState } from "react"
 
 
-const ReviewForm = ({product}) => {
+const ReviewForm = ({product,setProduct}) => {
   const [rating,setRating]=useState(0);
   const [review,setReview]=useState("");
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -38,9 +38,12 @@ const ReviewForm = ({product}) => {
         body: JSON.stringify(fromData)
       })
       if(res.ok){
+        const data = await res.json();
+        setProduct(data)
         setReview("");
         setRating(0)
-      message.success("Yorumunuz için teşekkür ederiz")
+      message.success("Yorumunuz için teşekkür ederiz");
+     
       }
       
     } catch (error) {
