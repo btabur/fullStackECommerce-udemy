@@ -4,7 +4,7 @@ import { CardContext } from "../../context/CardProvider"
 
 const CardItem = ({cardItem}) => {
   const {removerFromCard} = useContext(CardContext)
-  console.log(cardItem);
+  
 
   return (
     <tr className="cart-item">

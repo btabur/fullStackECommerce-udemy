@@ -11,7 +11,7 @@ const Reviews = ({active,product}) => {
       <>
         <h3> { product.reviews.length} reviews for {product.name}</h3>
        <ol className="comment-list">
-       {product.reviewa.map((item,i)=> (
+       {product.reviews.map((item,i)=> (
                <ReviewItem key={i} item={item}/>
        ))}
      
@@ -26,7 +26,7 @@ const Reviews = ({active,product}) => {
 
     <div className="review-form-wrapper">
       <h2>Add a review</h2>
-      <ReviewForm/>
+      <ReviewForm product={product}/>
     </div>
   
   </div>
