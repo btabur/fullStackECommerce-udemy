@@ -1,23 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Search.css'
 import PropTypes from 'prop-types'
 import { message } from "antd";
 
 const Search = ({isSearchShow, setIsSearchShow}) => {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
+    const [searchResults,setSearchResults]= useState([])
     const handleSearch = async (e)=> {
         e.preventDefault();
         const productName = e.target[0].value;
 
+        if(productName.trim().length==0) {
+            message.info("Boş karakter arayamazsınız")
+            return;
+        }
+
         try {
-            const res =  await fetch(`${apiUrl}/api/products/search/${productName}`);
+            const res =  await fetch(`${apiUrl}/api/products/search/${productName.trim()}`);
             if(!res.ok){
               message.error("Ürün getirilemedi") 
               return;
             }
 
             const data = await res.json();
-            console.log(data);
+            setSearchResults(data)
         } catch (error) {
             console.log(error);
         }
@@ -38,23 +44,31 @@ const Search = ({isSearchShow, setIsSearchShow}) => {
             <div className="search-heading">
                 <h3>RESULTS FROM PRODUCT</h3>
             </div>
-            <div className="results">
-                <a href="#" className="result-item">
-                    <img src="/img/products/product1/1.png" className="search-thumb" alt=""/>
-                    <div className="search-info">
-                        <h4>Analogue Resin Strap</h4>
-                        <span className="search-sku">SKU: PD0016</span>
-                        <span className="search-price">$108.00</span>
-                    </div>
-                </a>
-                <a href="#" className="result-item">
-                    <img src="/img/products/product2/1.png" className="search-thumb" alt=""/>
-                    <div className="search-info">
-                        <h4>Analogue Resin Strap</h4>
-                        <span className="search-sku">SKU: PD0016</span>
-                        <span className="search-price">$108.00</span>
-                    </div>
-                </a>
+            <div className="results" style={{
+                display:`${searchResults?.length === 0 ? "flex" : "grid"}`
+            }}>
+                {searchResults?.length ===0 && (
+                    <a href="#" className='result-item' 
+                    style={{justifyContent:"center",
+                            width:"100%"
+                    }}>
+                        Aradığınız ürün bulunamadı 
+                    </a>
+                )}
+                {searchResults.length>0 && 
+                searchResults?.map(resultItem=> (
+                        <a href="#" className="result-item" key={resultItem._id}>
+                        <img src={resultItem.img[0]} className="search-thumb" alt=""/>
+                        <div className="search-info">
+                            <h4>{resultItem.name}</h4>
+                            <span className="search-sku">SKU: PD0016</span>
+                            <span className="search-price">${resultItem.price.current.toFixed()}</span>
+                        </div>
+                        </a>
+                        )
+                )}
+               
+             
             </div>
         </div>
         <i className="bi bi-x-circle" id="close-search" 
