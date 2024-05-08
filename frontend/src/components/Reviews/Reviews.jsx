@@ -1,8 +1,45 @@
+import { useEffect, useState } from 'react'
 import ReviewForm from './ReviewForm'
 import ReviewItem from './ReviewItem'
 import './Reviews.css'
+import { message } from 'antd'
 
 const Reviews = ({active,product,setProduct}) => {
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const [users,setUsers] = useState([]);
+  const thisReview=[]
+
+  const fetchUsers = async()=> {
+       
+    try {
+       
+        const response = await fetch(`${apiUrl}/api/users`)
+      
+       if(response.ok){
+        const data = await response.json();
+        setUsers(data)
+       }else {
+        message.error("Kullanıcılar getirilemedi ")
+       }
+
+    } catch (error) {
+        console.log("Giriş hatası",error);
+    }
+    
+}
+product.reviews.forEach(review => {
+  const matchingUsers = users?.filter(user=> user._id === review.user)
+    matchingUsers.forEach(matchingUser=> {
+      thisReview.push(({
+        review,
+        user:matchingUser
+      }))
+  })
+});
+
+  useEffect(()=> {
+    fetchUsers()
+  },[])
   return (
     <div className={`tab-panel-reviews ${active}`}>
   
@@ -11,7 +48,7 @@ const Reviews = ({active,product,setProduct}) => {
       <>
         <h3> { product.reviews.length} reviews for {product.name}</h3>
        <ol className="comment-list">
-       {product.reviews.map((item,i)=> (
+       {thisReview.map((item,i)=> (
                <ReviewItem key={i} reviewItem={item}/>
        ))}
      

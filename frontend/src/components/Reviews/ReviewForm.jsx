@@ -23,7 +23,7 @@ const ReviewForm = ({product,setProduct}) => {
         {
           text:review,
           rating:parseInt(rating),
-          user:user.id
+          user:user.id || user._id
         }
 
       ]
