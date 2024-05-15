@@ -33,6 +33,7 @@ const CardProvider = ({ children }) => {
         addToCard,
         removerFromCard,
         cardItems,
+        setcardItems
       }}
     >
       {children}
