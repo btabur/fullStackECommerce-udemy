@@ -5,12 +5,16 @@ import { CardContext } from "../../../context/CardProvider"
 
 const Info = ({product}) => {
     const quantityRef= useRef()
-    const {addToCard,cartItems}= useContext(CardContext);
+    const {addToCard,cardItems}= useContext(CardContext);
     const originalPrice= product.price.current;
     const discountPercent = product.price.discount;
   
     const discountedPrice= originalPrice - (originalPrice*discountPercent)/100;
-  // todo sepete eklendiğinde tekrar eklenememesi lazım 
+  
+  const filteredCard = cardItems.find(
+    (cartItem) => cartItem._id === product._id
+  );
+   
   return (
     <div className="product-info">
                         <h1 className="product-title">
@@ -72,15 +76,14 @@ const Info = ({product}) => {
                                     <input ref={quantityRef} type="number" defaultValue="1" min="1" id="quantity"/>
                                     <button  
                                       className="btn btn-lg btn-primary" id="add-to-cart" type="button"
-                                  
+                                            disabled={filteredCard}
                                     onClick={()=> addToCard({
                                         ...product,
                                         price:discountedPrice,
                                         quantity:parseInt(quantityRef.current.value)
                                     })}
                                    
-                                  >Add to
-                                        cart</button>
+                                  >Add to cart</button>
                                 </div>
                                 <div className="product-extra-buttons">
                                     <a href="#">
