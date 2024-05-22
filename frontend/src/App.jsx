@@ -23,6 +23,7 @@ import CreateCouponPage from './pages/Admin/Coupons/CreateCouponsPage'
 import UpdateCouponPage from './pages/Admin/Coupons/UpdateCouponPage'
 import Success from './pages/Success'
 import OrderPage from './pages/Admin/OrderPage'
+import DashboardPage from './pages/Admin/DashboardPage'
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
       <Route path='/product/:id' element={<ProductDetailsPage/>} />
       <Route path='/blog/:id' element={<BlogDetailPage/>} />
       <Route path='/admin/*' >
+        <Route index element={<DashboardPage/>} />
         <Route path='users' element={<UserPage/>} />
         <Route path='categories' element={<CategoryPage/>} />
         <Route path='categories/update/:id' element={<UpdateCategoryPage/>} />
