@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Search.css'
 import PropTypes from 'prop-types'
 import { message } from "antd";
+import {Link} from "react-router-dom"
 
 const Search = ({isSearchShow, setIsSearchShow}) => {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -57,14 +58,14 @@ const Search = ({isSearchShow, setIsSearchShow}) => {
                 )}
                 {searchResults.length>0 && 
                 searchResults?.map(resultItem=> (
-                        <a href="#" className="result-item" key={resultItem._id}>
+                        <Link to={`product/${resultItem._id}`} className="result-item" key={resultItem._id}>
                         <img src={resultItem.img[0]} className="search-thumb" alt=""/>
                         <div className="search-info">
                             <h4>{resultItem.name}</h4>
                             <span className="search-sku">SKU: PD0016</span>
                             <span className="search-price">${resultItem.price.current.toFixed()}</span>
                         </div>
-                        </a>
+                        </Link>
                         )
                 )}
                

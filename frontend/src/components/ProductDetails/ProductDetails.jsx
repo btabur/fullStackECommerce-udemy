@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Breadcrumb from './Breadcrumb/Breadcrumb'
 import Gallery from './Gallery/Gallery'
 import Info from './Info/Info'

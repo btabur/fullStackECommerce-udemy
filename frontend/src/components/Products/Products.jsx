@@ -32,6 +32,7 @@ const Products = ({title}) => {
   const [products, setProducts] = useState([]);
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const pathName = window.location.pathname;
 
   const fetchProducts = async()=> {
        

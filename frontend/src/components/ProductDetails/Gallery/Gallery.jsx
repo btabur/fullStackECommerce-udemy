@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import productData from "../../../data.json";
 import Slider from "react-slick";
 import "./Gallery.css";
@@ -29,7 +29,13 @@ function PrevBtn({ onClick }) {
 }
 
 const Gallery = ({product}) => {
-  const [activeImg, setActiveImg] = useState(product.img[0]);
+  const [activeImg, setActiveImg] = useState({
+    img:product.img[0],
+    index:0
+  });
+  useEffect(()=> {
+      setActiveImg({img: product.img[0],imgIndex:0})
+  },[product.img])
 
   const sliderSettings = {
     dots: false,
@@ -43,7 +49,7 @@ const Gallery = ({product}) => {
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
-        <img src={activeImg} id="single-image" alt="" />
+        <img src={activeImg.img} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">

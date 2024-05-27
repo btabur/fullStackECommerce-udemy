@@ -27,8 +27,8 @@ const ProductDetailsPage = () => {
   };
   useEffect(()=> {
     fetchProduct()
-    console.log(product);
-  },[])
+   
+  },[productId])
   return ( product ?
     <ProductDetails product={product} setProduct={setProduct}/> : <p>Ürün Yükleniyor</p>
   )
