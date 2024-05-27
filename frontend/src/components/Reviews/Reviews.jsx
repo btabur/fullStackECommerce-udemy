@@ -27,7 +27,7 @@ const Reviews = ({active,product,setProduct}) => {
     }
     
 }
-product.reviews.forEach(review => {
+product && product.reviews.forEach(review => {
   const matchingUsers = users?.filter(user=> user._id === review.user)
     matchingUsers.forEach(matchingUser=> {
       thisReview.push(({
@@ -44,7 +44,7 @@ product.reviews.forEach(review => {
     <div className={`tab-panel-reviews ${active}`}>
   
     <div className="comments">
-      {product.reviews.length>0 ? 
+      {product && product.reviews.length>0 ? 
       <>
         <h3> { product.reviews.length} reviews for {product.name}</h3>
        <ol className="comment-list">
