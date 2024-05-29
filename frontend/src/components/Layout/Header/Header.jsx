@@ -1,13 +1,14 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import { CardContext } from '../../../context/CardProvider'
 import { Link, useLocation } from 'react-router-dom'
 
-const Header = ({setIsSearchShow}) => {
+const Header = ({logo,setIsSearchShow}) => {
   const {cardItems} = useContext(CardContext)
 
   const {pathname} = useLocation();
   const user = localStorage.getItem("user")
+
   return (
     
   <header>
@@ -27,7 +28,16 @@ const Header = ({setIsSearchShow}) => {
             <i className="bi bi-list" id="btn-menu"></i>
           </div>
           <div className="header-left">
-            <Link to={'/'} className="logo">LOGO</Link>
+            <Link to={'/'} className="logo">
+              <img style={{
+                width:"60px",
+                height:"60px",
+                borderRadius:"10px",
+                boxShadow:"10px 10px 20px black"
+
+
+              }} src={logo} alt="" />
+            </Link>
           </div>
           <div className="header-center" id="sidebar">
             <nav className="navigation">

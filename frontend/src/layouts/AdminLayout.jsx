@@ -7,6 +7,7 @@ import {
   DashboardOutlined,
   ShoppingCartOutlined,
   AppstoreOutlined,
+  CodeSandboxCircleFilled ,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -125,6 +126,15 @@ const AdminLayout = ({children}) => {
     },
     {
       key: "13",
+      icon: <CodeSandboxCircleFilled />,
+      label: "Logo",
+      path: "/admin/logo",
+      onClick: () => {
+        navigate(`/admin/logo`);
+      },
+    },
+    {
+      key: "14",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import './Footer.css'
 
-const Footer = () => {
+const Footer = ({logo}) => {
   return (
     <footer className="footer">
       <div className="subscribe-row">
@@ -67,7 +67,14 @@ const Footer = () => {
             <div className="brand-info">
               <div className="footer-logo">
                 <a href="index.html" className="logo">
-                  LOGO
+                <img style={{
+                width:"60px",
+                height:"60px",
+                borderRadius:"10px",
+                boxShadow:"10px 10px 20px black"
+
+
+              }} src={logo} alt="" />
                 </a>
               </div>
               <div className="footer-desc">

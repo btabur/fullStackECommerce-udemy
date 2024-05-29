@@ -24,6 +24,7 @@ import UpdateCouponPage from './pages/Admin/Coupons/UpdateCouponPage'
 import Success from './pages/Success'
 import OrderPage from './pages/Admin/OrderPage'
 import DashboardPage from './pages/Admin/DashboardPage'
+import LogoPage from './pages/Admin/LogoPage'
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
         <Route path='coupons/create' element={<CreateCouponPage/>} />
         <Route path='coupons/update/:id' element={<UpdateCouponPage/>} />
         <Route path='orders' element={<OrderPage/>} />
+        <Route path='logo' element={<LogoPage/>} />
       </Route>
      
    
