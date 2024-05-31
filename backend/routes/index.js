@@ -11,6 +11,7 @@ const couponRoute = require("./coupons.js")
 const userRoute = require("./users.js")
 const paymentRoute = require("./payment.js")
 const logoRoute = require("./logo.js")
+const blogRoute = require("./blog.js")
 
 
 //Her rotayı ilgili yol altında kullanıyoruz.
@@ -22,5 +23,6 @@ router.use("/coupons",couponRoute)
 router.use("/users",userRoute)
 router.use("/payment",paymentRoute)
 router.use("/logo",logoRoute)
+router.use("/blog",blogRoute)
 
 module.exports= router;

@@ -1,5 +1,5 @@
 todo
-1. Admin Panel logo Alanı- Dinamik logo
+1. Admin Panel logo Alanı- Dinamik logo  * => yapıldı
 2. Blog İşlemleri ve Blog Detay Sayfası Oluşturma
 3. İletişim Sayfası ve Anmin Panel Bağlantısı 
 4. Profil Sayfası Oluşturma ve Dinamikleştirme
