@@ -8,6 +8,7 @@ import {
   ShoppingCartOutlined,
   AppstoreOutlined,
   CodeSandboxCircleFilled ,
+  PicRightOutlined
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -140,6 +141,30 @@ const AdminLayout = ({children}) => {
       onClick: () => {
         window.location.href="/"
       },
+    },
+    {
+      key: "15",
+      icon: <PicRightOutlined />,
+      label: "Blog",
+      path: "/",
+      children: [
+        {
+          key: "16",
+          label: "Blog Listesi",
+          path: "/admin/blog",
+          onClick: () => {
+            navigate(`/admin/blog`);
+          },
+        },
+        {
+          key: "17",
+          label: "Yeni blog Oluştur",
+          path: "/admin/blog/create",
+          onClick: () => {
+            navigate("/admin/blog/create");
+          },
+        },
+      ],
     },
   ];
 
