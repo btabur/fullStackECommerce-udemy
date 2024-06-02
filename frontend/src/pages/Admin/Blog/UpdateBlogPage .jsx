@@ -91,14 +91,16 @@ const UpdateBlogPage = () => {
         <Input />
       </Form.Item>
       
-       {/* description */}
-       <Form.Item
-        label="Blo açıklaması"
+        {/* description */}
+     <Form.Item
+        label="Ürün açıklaması"
         name="description"
-        rules={[{  message: "Ürün açıklaması girin" }]}
+        rules={[{  message: "Blog açıklaması girin" }]}
       >
-       <Input.TextArea 
-        autoSize={{minRows:20}}/>
+       <ReactQuill theme="snow" style={{
+        height:"300px",
+        background:"white"
+       }}/>
       </Form.Item>
       {/* GÖRSEL LİNKLERİ */}
       <Form.Item

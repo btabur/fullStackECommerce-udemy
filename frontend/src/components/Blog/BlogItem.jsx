@@ -1,22 +1,35 @@
+import { useEffect, useState } from 'react';
 import './Blogs.css'
 
-const BlogItem = () => {
+const BlogItem = ({blog}) => {
+
+  const [date,setDate]= useState()
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    return new Intl.DateTimeFormat('tr-TR', options).format(date);
+  }
+  useEffect(()=> {
+      setDate(formatDate(blog.createdAt))
+  },[])
+
   return (
     <li className="blog-item">
     <a href="#" className="blog-image">
-      <img src="/img/blogs/blog1.jpg" alt=""/>
+      <img src={blog.blogPhoto} alt=""/>
     </a>
     <div className="blog-info">
       <div className="blog-info-top">
-        <span>25 Feb, 2021 </span>
+        <span>{date}</span>
         -
-        <span>0 Comments</span>
+        <span> {blog.reviews.length} Comments</span>
       </div>
       <div className="blog-info-center">
-        <a href="#">Aliquam hendrerit mi metus</a>
+        <a href="#">{blog.blogTitle}</a>
       </div>
       <div className="blog-info-bottom">
-        <a href="#">Read More</a>
+        <a href={`/blog/${blog._id}`}>Read More</a>
       </div>
     </div>
   </li>

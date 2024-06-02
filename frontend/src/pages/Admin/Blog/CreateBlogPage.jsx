@@ -56,12 +56,16 @@ const CreateBlogPage = () => {
       </Form.Item>
      
         
-      <Form.Item
-        label="Açıklama"
+     {/* description */}
+     <Form.Item
+        label="Ürün açıklaması"
         name="description"
-        rules={[{ required: true, message: "Açılama girin" }]}
+        rules={[{  message: "Blog açıklaması girin" }]}
       >
-        <Input.TextArea  autoSize={{minRows:24}} placeholder=" Blog girin"/>
+       <ReactQuill theme="snow" style={{
+        height:"300px",
+        background:"white"
+       }}/>
       </Form.Item>
       
      
