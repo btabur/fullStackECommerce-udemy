@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./BlogDetail.css";
 import Reviews from "../Reviews/Reviews";
+import ReviewsBlog from "../ReviewsBlog/ReviewsBlog";
 
 const BlogDetail = () => {
   const pathName = window.location.pathname;
@@ -33,6 +34,7 @@ const BlogDetail = () => {
       console.log("Giriş hatası", error);
     }
   };
+ 
 
   useEffect(() => {
     fetchBlog();
@@ -42,6 +44,8 @@ const BlogDetail = () => {
     if (blog && blog.createdAt) {
       setDate(formatDate(blog.createdAt));
     }
+
+  
   }, [blog]);
   return (
     <section className="single-blog">
@@ -74,7 +78,7 @@ const BlogDetail = () => {
             </div>
           </div>
         </article>
-        <Reviews />
+        <ReviewsBlog blog={blog} setBlog={setBlog} />
       </div>
     </section>
   );

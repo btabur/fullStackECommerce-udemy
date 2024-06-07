@@ -21,12 +21,14 @@ import CouponPage from './pages/Admin/Coupons/CouponPage'
 import CreateCouponPage from './pages/Admin/Coupons/CreateCouponsPage'
 import UpdateCouponPage from './pages/Admin/Coupons/UpdateCouponPage'
 import Success from './pages/Success'
+import BlogPage from './pages/BlogPage'
 import OrderPage from './pages/Admin/OrderPage'
 import DashboardPage from './pages/Admin/DashboardPage'
 import LogoPage from './pages/Admin/LogoPage'
 import CreateBlogPage from './pages/Admin/Blog/CreateBlogPage'
 import UpdateBlogPage from './pages/Admin/Blog/UpdateBlogPage '
-import BlogPage from './pages/Admin/Blog/BlogPage'
+
+import AdminBlogPage from './pages/Admin/Blog/AdminBlogPage'
 
 const App = () => {
   return (
@@ -55,7 +57,7 @@ const App = () => {
         <Route path='coupons/update/:id' element={<UpdateCouponPage/>} />
         <Route path='orders' element={<OrderPage/>} />
         <Route path='logo' element={<LogoPage/>} />
-        <Route path='blog' element={<BlogPage/>} />
+        <Route path='blog' element={<AdminBlogPage/>} />
         <Route path='blog/create' element={<CreateBlogPage/>} />
         <Route path='blog/update/:id' element={<UpdateBlogPage/>} />
       </Route>

@@ -3,7 +3,7 @@ import { Button, message, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const BlogPage = () => {
+const AdminBlogPage = () => {
 
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -114,4 +114,4 @@ const BlogPage = () => {
   )
 }
 
-export default BlogPage
+export default AdminBlogPage
